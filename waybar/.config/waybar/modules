@@ -95,8 +95,8 @@
   "custom/power": {
         "format": "⏻",
         "tooltip": false,
-        "on-click": "archlinux-logout",
-        //"on-click": "$HOME/.config/hypr/scripts/wlogout",
+        //"on-click": "archlinux-logout",
+        "on-click": "wlogout",
         //"on-click": "$HOME/.config/hypr/scripts/wofi_powermenu",
         //"on-click": "sleep 0.1; $HOME/.config/hypr/scripts/rofi_powermenu",
   },

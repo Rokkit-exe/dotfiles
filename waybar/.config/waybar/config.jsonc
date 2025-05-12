@@ -2,7 +2,7 @@
 {
   "layer": "top", // Waybar at top layer
   "position": "top", // Waybar position (top|bottom|left|right)
-  "height": 30,
+  "height": 25,
   "margin": "0 0 0 0",
   //"width": 1350, // Waybar width
   // Choose the order of the modules idle_inhibitor
@@ -17,8 +17,9 @@
   "modules-right": [
     "backlight",
     "battery",
-    "network",
     "tray",
+    "network",
+    "custom/bluetooth",
     "pulseaudio",
     "custom/power",
   ],
@@ -128,9 +129,14 @@
     "on-scroll-down": "~/.config/hypr/scripts/volume --dec",
     "smooth-scrolling-threshold": 1,
   },
+  "custom/bluetooth": {
+    "format": "",
+    "on-click": "blueman-manager",
+    "tooltip": false,
+  },
   "custom/power": {
     "format": "⏻",
-    "on-click": "archlinux-logout",
+    "on-click": "wlogout",
     "tooltip": false,
   },
   "custom/launcher": {
