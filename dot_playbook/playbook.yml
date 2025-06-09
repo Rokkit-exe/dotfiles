@@ -1,58 +1,8 @@
 - name: Setup Arch Linux
   hosts: localhost
   become: true
-  tasks:
-    - name: update the system
-      shell: sudo pacman -Syu --noconfirm
-      tags: update
-
-    - name: Ensure yay is installed
-      community.general.pacman:
-        name: yay
-        state: present
-
-    - name: Install AUR packages
-      shell: yay -S --noconfirm {{ item }}
-      loop: "{{ aur_packages }}"
-      tags: aur
-      when: ansible_distribution == 'Arch Linux'
-
-    - name: Update chezmoi
-      shell: chezmoi update --apply
-      tags: chezmoi
-
-    - name: Disabling USB autosuspend
-      shell: "{{ script_dir }}/dot_playbook/disable_usb.sh"
-      tags: usb
-
-    - name: Mouting storage drive automatically
-      shell: "{{ script_dir }}/dot_playbook/mounting_drive.sh"
-      tags: storage
-
-    - name: Install AUR Helper (yay)
-      shell: "{{ script_dir }}/dot_playbook/install_helper.sh"
-      tags: Helper
-
-    - name: Install lazyvim
-      shell: "{{ script_dir }}/dot_playbook/install_lazyvim.sh"
-      tags: lazyvim
-
-    - name: Install Cider V2
-      shell: "{{ script_dir }}/dot_playbookinstall_cider.sh"
-      tags: cider
-
-    - name: Setting up Grub
-      shell: "{{ script_dir }}/grub_setup.sh"
-      when: ansible_distribution == 'Arch Linux'
-      tags: grub
-
-    - name: Setting up SDDM
-      shell: "{{ script_dir }}/set_sddm_theme.sh"
-      when: ansible_distribution == 'Arch Linux'
-      tags: sddm
-
   vars:
-    playbook_dir: "{{ lookup('env', 'HOME') }}/.local/share/chezmoi/dot_playbook"
+    playbook_dir: "/home/frank/.playbook"
     script_dir: "{{ playbook_dir }}/scripts"
     service_dir: "{{ playbook_dir }}/services"
     aur_packages:
@@ -113,3 +63,50 @@
       - etcher-bin
 
 
+  tasks:
+    - name: update the system
+      shell: sudo pacman -Syu --noconfirm
+      tags: update
+
+    - name: Ensure yay is installed
+      community.general.pacman:
+        name: yay
+        state: present
+
+    - name: Install AUR packages
+      shell: yay -S --noconfirm {{ item }}
+      loop: "{{ aur_packages }}"
+      tags: aur
+      when: ansible_distribution == 'Arch Linux'
+
+    - name: Deploy disable_usb script and service
+      shell: "{{ script_dir }}/disable_usb.sh"
+      tags: disable_usb
+
+    - name: Mouting storage drive automatically
+      shell: "{{ script_dir }}/mounting_drive.sh"
+      tags: storage
+
+    - name: Install AUR Helper (yay)
+      shell: "{{ script_dir }}/install_helper.sh"
+      tags: Helper
+
+    - name: Install lazyvim
+      shell: "{{ script_dir }}/install_lazyvim.sh"
+      tags: lazyvim
+
+    - name: Install Cider V2
+      shell: "{{ script_dir }}/install_cider.sh"
+      tags: cider
+
+    - name: Setting up Grub
+      shell: "{{ script_dir }}/grub_setup.sh"
+      when: ansible_distribution == 'Arch Linux'
+      tags: grub
+
+    - name: Setting up SDDM
+      shell: "{{ script_dir }}/set_sddm_theme.sh"
+      when: ansible_distribution == 'Arch Linux'
+      tags: sddm
+
+  
