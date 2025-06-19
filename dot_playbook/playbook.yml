@@ -109,4 +109,9 @@
       when: ansible_distribution == 'Arch Linux'
       tags: sddm
 
+    - name: Setting up qemu
+      shell: "{{ script_dir }}/virt_config.sh"
+      when: ansible_distribution == 'Arch Linux'
+      tags: qemu
+
   
