@@ -21,6 +21,11 @@
       - kitty
       - zsh
       - gwenview
+      - plasma-nm
+      - qt6ct
+      - qt5ct
+      - qt5-wayland
+      - qt6-wayland
       - adw-gtk-theme
       - papirus-icon-theme
       - catppuccin-gtk-theme-mocha
@@ -41,6 +46,7 @@
       - pamixer
       - pavucontrol
       - blueman
+      - blueberry
       - bluez
       - bluez-utils
       - git

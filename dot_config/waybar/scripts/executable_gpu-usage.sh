@@ -17,4 +17,4 @@ TEMP_RAW=$(cat "$HWMON_PATH/temp1_input")
 TEMP_C=$((TEMP_RAW / 1000))
 
 # Output to Waybar
-echo " ${USAGE}%  ${VRAM_PERCENT}%  ${TEMP_C}°C"
+echo "  ${USAGE}%  ${VRAM_PERCENT}%  ${TEMP_C}°C"

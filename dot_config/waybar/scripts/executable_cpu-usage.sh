@@ -14,4 +14,4 @@ if [ -z "$TEMP" ]; then
 fi
 
 # Output to Waybar
-echo " ${CPU_USAGE}%  ${TEMP}°C"
+echo "  ${CPU_USAGE}%  ${TEMP}°C"

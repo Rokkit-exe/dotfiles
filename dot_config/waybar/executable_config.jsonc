@@ -105,7 +105,7 @@
     "format-ethernet": "  Wired",
     "format-disconnected": "⚠  Disconnected",
     // "on-click": "alacritty -e nmtui"
-    "on-click": "nm-connection-editor"
+    "on-click": "QT_QPA_PLATFORMTHEME=qt6ct QT_QPA_PLATFORM=wayland kcmshell6 kcm_networkmanagement"
   },
   "pulseaudio": {
     /* "format": "{icon} {volume}% {format_source}", */
@@ -142,7 +142,7 @@
   },
   "custom/bluetooth": {
     "format": "",
-    "on-click": "blueman-manager",
+    "on-click": "blueberry",
     "tooltip": false
   },
   "custom/launcher": {
