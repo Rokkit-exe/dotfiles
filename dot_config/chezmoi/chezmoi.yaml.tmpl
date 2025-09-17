@@ -1,7 +1,8 @@
-
+{{- $device := default (promptString "device" "desktop or laptop?") .data.device -}}
 data:
-  device: {{ default (promptString "device" "desktop or laptop?") .device | quote }}
-  de: {{ if eq .device "desktop" }}hyprland{{ else }}plasma{{ end }}
+  device: {{ $device | quote }}
+  de: {{ if eq $device "desktop" }}hyprland{{ else }}plasma{{ end }}
+
 
 
 
