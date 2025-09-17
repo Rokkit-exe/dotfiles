@@ -1,0 +1,23 @@
+
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Updating system packages (pacman -Syu)..."
+sudo pacman -Syu --noconfirm
+
+if command -v ansible >/dev/null 2>&1; then
+  echo "Ansible is already installed."
+else
+  echo "Installing Ansible..."
+  sudo pacman -S --noconfirm ansible
+fi
+
+PLAYBOOK_DIR="$HOME/.local/share/chezmoi/playbook"
+PLAYBOOK="$PLAYBOOK_DIR/playbook.yml"
+
+echo "Running Ansible playbook for device={{ .device }} de={{ .de }} ..."
+# -K prompts for sudo password; drop it if you have NOPASSWD sudo
+ansible-playbook -K -i localhost, -c local \
+  -e "device={{ .device }} de={{ .de }}" \
+  "$PLAYBOOK"
+

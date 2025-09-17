@@ -2,7 +2,7 @@
   hosts: localhost
   become: true
   vars:
-    playbook_dir: "/home/frank/.playbook"
+    playbook_dir: "/home/frank/.local/share/chezmoi/dot_local/share/chezmoi/playbook"
     script_dir: "{{ playbook_dir }}/scripts"
     service_dir: "{{ playbook_dir }}/services"
     aur_packages:

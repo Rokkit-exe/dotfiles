@@ -1,0 +1,11 @@
+# Hyprland-only content (skip on laptop)
+{{ if ne .de "hyprland" }}
+dot_config/hypr/
+dot_config/waybar/
+{{ end }}
+
+# KDE Plasma-only content (skip on desktop)
+{{ if ne .de "plasma" }}
+dot_config/kwinrc
+{{ end }}
+
