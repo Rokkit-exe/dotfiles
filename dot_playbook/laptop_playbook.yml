@@ -1,0 +1,52 @@
+- name: Setup Ubuntu Laptop (Gnome)
+  hosts: localhost
+  become: true
+  vars:
+    playbook_dir: "/home/frank/.local/share/chezmoi/dot_playbook"
+    script_dir: "{{ playbook_dir }}/scripts"
+    service_dir: "{{ playbook_dir }}/services"
+    apt_packages:
+      - 7zip
+      - ansible
+      - chezmoi
+      - curl
+      - dconf-editor
+      - discord
+      - docker
+      - filezilla
+      - firefox
+      - git
+      - grub
+      - htop
+      - kitty
+      - kodi
+      - mariadb
+      - nano
+      - neofetch
+      - neovim
+      - net-tools
+      - nodejs
+      - npm
+      - openssh-server
+      - openvpn
+      - thunderbird
+      - unzip
+      - vim
+      - vlc
+      - wget
+      - zsh
+
+  tasks:
+    - name: update the system
+      shell: sudo apt update -y && sudo apt full-upgrade -y
+      tags: update
+
+    - name: Install apt packages
+      shell: sudo apt install -y {{ item }}
+      loop: "{{ apt_packages }}"
+      tags: apt
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Install lazyvim
+      shell: "{{ script_dir }}/install_lazyvim.sh"
+      tags: lazyvim
