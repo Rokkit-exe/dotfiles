@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 sddm_config_dir="/etc/sddm.conf.d"
 sddm_config_path="$sddm_config_dir/theme.conf.user"
 sddm_theme_dir="/usr/share/sddm/themes"

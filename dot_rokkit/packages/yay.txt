@@ -1,0 +1,12 @@
+adw-gtk-theme
+beekeeper-studio-bin
+bun-bin
+catppuccin-gtk-theme-mocha
+catppuccin-sddm-theme-mocha
+devt-git
+etcher-bin
+flutter-bin
+postman-bin
+simple-sddm-theme-2-git
+spotify
+visual-studio-code-bin

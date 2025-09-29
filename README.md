@@ -3,8 +3,24 @@
 
 # Installation
 
+### Auth
+```bash
+# generate ssh key for github
+ssh-keygen
+
+# copy the public key and place it in github sshkey
+cat $HOME/.ssh/id_ed25519.pub
+```
+
+### Arch Linux
+
 ```bash
 sudo pacman -S chezmoi
+chezmoi init --apply git@github.com:Rokkit-exe/dotfiles.git
+```
+
+```bash
+sudo snap install chezmoi --classic
 chezmoi init --apply git@github.com:Rokkit-exe/dotfiles.git
 ```
 

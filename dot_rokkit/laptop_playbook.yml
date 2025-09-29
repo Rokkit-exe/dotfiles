@@ -6,35 +6,12 @@
     script_dir: "{{ playbook_dir }}/scripts"
     service_dir: "{{ playbook_dir }}/services"
     apt_packages:
-      - 7zip
-      - ansible
-      - chezmoi
-      - curl
-      - dconf-editor
+
+    snap_packages:
+      - chezmoi --classic
       - discord
-      - docker
-      - filezilla
-      - firefox
-      - git
-      - grub
-      - htop
-      - kitty
-      - kodi
-      - mariadb
-      - nano
-      - neofetch
-      - neovim
-      - net-tools
-      - nodejs
-      - npm
-      - openssh-server
-      - openvpn
-      - thunderbird
-      - unzip
-      - vim
-      - vlc
-      - wget
-      - zsh
+      - go --classic
+
 
   tasks:
     - name: update the system
@@ -47,6 +24,21 @@
       tags: apt
       when: ansible_distribution == 'Ubuntu'
 
+    - name: Install Snap packages
+      shell: sudo snap install {{ item }}
+      loop: "{{ snap_packages }}"
+      when: ansible_distribution == 'Ubuntu'
+
     - name: Install lazyvim
       shell: "{{ script_dir }}/install_lazyvim.sh"
       tags: lazyvim
+
+    - name: Setting up ZSH (Oh-My-Posh + Powerlevel10k)
+      shell: "{{ script_dir }}/setting_up_zsh.sh"
+      tags: zsh
+
+    - name: Install Docker
+      shell: "{{ script_dir }}/docker_ubuntu_install.sh"
+      tags: docker
+      when: ansible_distribution == 'Ubuntu'
+
