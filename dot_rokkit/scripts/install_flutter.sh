@@ -7,6 +7,8 @@ NAME='flutter_linux_*-stable.tar.xz' # pattern
 
 sudo apt-get update -y && sudo apt-get upgrade -y
 sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa
+sudo apt install -y build-essential clang cmake ninja-build pkg-config \
+  libgtk-3-dev liblzma-dev
 
 mkdir -p "$WORKDIR"
 
