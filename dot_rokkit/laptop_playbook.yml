@@ -6,12 +6,46 @@
     script_dir: "{{ playbook_dir }}/scripts"
     service_dir: "{{ playbook_dir }}/services"
     apt_packages:
+<<<<<<< HEAD:dot_rokkit/laptop_playbook.yml
 
     snap_packages:
       - chezmoi --classic
       - discord
       - go --classic
 
+=======
+      - 7zip
+      - ansible
+      - curl
+      - dconf-editor
+      - docker
+      - filezilla
+      - firefox
+      - git
+      - htop
+      - kitty
+      - kodi
+      - libreoffice
+      - mariadb-server
+      - nano
+      - neofetch
+      - neovim
+      - net-tools
+      - nodejs
+      - npm
+      - openssh-server
+      - openvpn
+      - thunderbird
+      - unzip
+      - vim
+      - vlc
+      - wget
+      - zsh
+    flatpak_packages:
+      - com.discordapp.Discord
+      - com.getpostman.Postman
+      - com.obsproject.Studio
+>>>>>>> 207dd12 (adding laptop config):dot_playbook/laptop_playbook.yml
 
   tasks:
     - name: update the system
@@ -24,9 +58,16 @@
       tags: apt
       when: ansible_distribution == 'Ubuntu'
 
+<<<<<<< HEAD:dot_rokkit/laptop_playbook.yml
     - name: Install Snap packages
       shell: sudo snap install {{ item }}
       loop: "{{ snap_packages }}"
+=======
+    - name: Install flatpak packages
+      shell: flatpak install -y flathub {{ item }}
+      loop: "{{ flatpak_packages }}"
+      tags: flatpak
+>>>>>>> 207dd12 (adding laptop config):dot_playbook/laptop_playbook.yml
       when: ansible_distribution == 'Ubuntu'
 
     - name: Install lazyvim
