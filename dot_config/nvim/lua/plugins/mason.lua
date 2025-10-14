@@ -21,7 +21,6 @@ return {
       "flake8",
       "hadolint",
       -- go tools
-      "go-debug-adapter",
       "gofumpt",
       "goimports",
       "gopls",
@@ -33,7 +32,6 @@ return {
       "eslint-lsp",
       "deno",
       -- json tools
-      "js-debug-adapter",
       "jsonnet-language-server",
       -- markdown tools
       "marksman",

@@ -6,6 +6,7 @@ return {
       "tsx",
       "typescript",
       "go",
+      "dart",
       "lua",
       "python",
       "bash",
