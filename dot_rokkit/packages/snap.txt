@@ -1,3 +1,0 @@
-chezmoi --classic
-discord
-go --classic
