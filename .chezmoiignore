@@ -1,0 +1,50 @@
+# elephant
+.config/elephant/*.bak*
+.config/elephant/providers
+
+# hypr
+.config/hypr/shaders
+.config/hypr/*.bak*
+
+# kitty
+.config/kitty/*.bak*
+
+# lazygit
+.config/lazygit/*.bak*
+
+# mako
+.config/mako/*.bak*
+
+# nvim
+
+
+# opencode
+.config/opencode/node_modules
+.config/opencode/bun.lock
+.config/opencode/.gitignore
+.config/opencode/package.json
+
+# swayosd
+.config/swayosd/*.bak*
+
+# tmux
+.config/tmux/plugins
+.config/tmux/*.bak*
+
+# uwsm
+.config/uwsm/*.bak*
+
+# walker
+.config/walker/*.bak*
+
+# waybar
+.config/waybar/*.bak*
+
+# other
+*.bak*
+.config/*.bak*
+
+
+
+
+
