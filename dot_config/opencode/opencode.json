@@ -1,0 +1,70 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "bash": "ask",
+    "edit": "ask",
+    "write": "ask",
+    "read": "allow",
+    "grep": "allow",
+    "glob": "ask",
+    "list": "allow",
+    "patch": "ask",
+    "todowrite": "ask",
+    "todoread": "allow",
+    "webfetch": "allow"
+  },
+  "tools": {
+    "bash": true,
+    "edit": true,
+    "write": true,
+    "read": true,
+    "grep": true,
+    "glob": true,
+    "list": true,
+    "patch": true,
+    "todowrite": true,
+    "todoread": true,
+    "webfetch": true
+  },
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:ctx7sk-855d3187-2d37-4d46-b43a-6bb23402cc75}"
+      }
+    },
+    "obsidian": {
+      "type": "local",
+      "command": ["npx", "@mauricio.wolff/mcp-obsidian@latest", "/home/frank/obsidian"],
+      "enabled": true,
+    }
+  },
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://192.168.0.100:10000/v1"
+      },
+      "models": {
+        "gpt-oss:20b": {
+          "name": "gpt-oss:20b"
+        },
+        "qwen2.5-coder:14b": {
+          "name": "qwen2.5-coder:14b"
+        },
+        "deepseek-r1:14b": {
+          "name": "deepseek-r1:14b"
+        }
+      }
+    }
+  },
+  "lsp": {
+    "dart": {
+      "command": ["dart", "analyze"],
+      "extensions": [".dart"]
+    }
+  }
+}
+

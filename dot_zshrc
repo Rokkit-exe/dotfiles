@@ -1,0 +1,123 @@
+# Set the directory we want to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Download Zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+autoload -Uz compinit && compinit
+
+zinit cdreplay -q
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# Shell integrations
+# fuzzy finder
+eval "$(fzf --zsh)"
+# cd replacement
+eval "$(zoxide init --cmd cd zsh)"
+# theming
+eval "$(starship init zsh)"
+
+# Disable vim mode, use emacs mode
+bindkey -e
+
+# aliases
+alias python='python3'
+alias pip='pip3'
+
+# Flutter
+alias emu1='flutter emulators --launch pixel_9_API_36'
+alias emu2='flutter emulators --launch resizable_API_36'
+alias run-emu1='flutter run -d emulator-5554'
+alias run-emu2='flutter run -d emulator-5556'
+
+# networking
+alias public-ip='curl ipinfo.io/ip'
+alias local-eth="ip addr show eno1 | grep 'inet ' | cut -d' ' -f6"
+alias local-wifi="ip addr show wlan0 | grep 'inet ' | cut -d' ' -f6"
+alias ports='netstat -tulanp'
+alias server='rokkit-broswer-new-tab http://192.168.0.100'
+alias adguard='rokkit-broswer-new-tab http://192.168.0.100:30004'
+
+# alternatives
+alias cat='bat'
+alias grep='rg'
+alias ls='ls --color'
+alias tmux-init='/home/frank/.config/tmux/sessions/init.sh'
+
+# Directories
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+
+
+
+# Golang
+if [[ ":PATH:" != *":/usr/local/go/bin:"* ]]; then
+  export PATH=$PATH:/usr/local/go/bin
+fi
+if [[ ":PATH:" != *":$(go env GOPATH)/bin:"* ]]; then
+  export PATH="$PATH:$(go env GOPATH)/bin"
+fi
+
+# Flutter
+if ! command -v flutter >/dev/null 2>&1; then
+  export PATH="/usr/local/bin:$PATH"
+fi
+if [ -d "/opt/flutter/bin" ] && [[ ":$PATH:" != *":/opt/flutter/bin:"* ]]; then
+  export PATH="/opt/flutter/bin:$PATH"
+fi
+
+# Android SDK environment variables
+export ANDROID_SDK_ROOT="$HOME/android/Sdk"
+export ANDROID_HOME="$ANDROID_SDK_ROOT"
+export ANDROID_AVD_HOME="$HOME/.android/avd"
+
+# Add Android SDK tools to PATH
+if [[ ":$PATH:" != *":$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:"* ]]; then
+  export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH"
+fi
+if [[ ":$PATH:" != *":$ANDROID_SDK_ROOT/platform-tools:"* ]]; then
+  export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
+fi
+if [[ ":$PATH:" != *":$ANDROID_SDK_ROOT/emulator:"* ]]; then
+  export PATH="$ANDROID_SDK_ROOT/emulator:$PATH"
+fi
+
+
+if [[ ":PATH:" != *"$HOME/coding/rokkit/bin:"* ]]; then
+  export PATH=$PATH:$HOME/coding/rokkit/bin
+fi
+
