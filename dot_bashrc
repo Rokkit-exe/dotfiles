@@ -1,0 +1,41 @@
+# If not running interactively, don't do anything (leave this at the top of this file)
+[[ $- != *i* ]] && return
+
+# All the default Omarchy aliases and functions
+# (don't mess with these directly, just overwrite them here!)
+#source ~/.local/share/omarchy/default/bash/rc
+
+# Add your own exports, aliases, and functions here.
+#
+# Make an alias for invoking commands you use constantly
+alias python='python3'
+alias emu1='flutter emulators --launch pixel_9_API_36'
+alias emu2='flutter emulators --launch resizable_API_36'
+alias run-emu1='flutter run -d emulator-5554'
+alias run-emu2='flutter run -d emulator-5556'
+alias rip='curl ipinfo.io/ip'
+alias lip="ip addr show eno1 | grep 'inet ' | cut -d' ' -f6"
+alias wlip="ip addr show wlan0 | grep 'inet ' | cut -d' ' -f6"
+alias ports='netstat -tulanp'
+alias server='uwsm app -- firefox --new-tab http://192.168.0.100'
+alias adguard='uwsm app -- firefox --new-tab http://192.168.0.100:30004'
+alias cat='bat'
+alias grep='rg'
+
+
+export ANDROID_SDK_ROOT=/opt/android-sdk
+export ANDROID_HOME=$ANDROID_SDK_ROOT
+export PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator"
+
+# Bash plugins setup
+#
+# bash-completion
+#[[ -r /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
+eval "$(fzf --bash)"
+# zoxide
+eval "$(zoxide init bash)"
+# ble.sh
+[[ -f ~/.local/share/blesh/ble.sh ]] && source ~/.local/share/blesh/ble.sh
+# starship
+eval "$(starship init bash)"
+
