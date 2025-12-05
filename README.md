@@ -19,22 +19,17 @@ sudo pacman -S chezmoi
 chezmoi init --apply git@github.com:Rokkit-exe/dotfiles.git
 ```
 
-```bash
-sudo snap install chezmoi --classic
-chezmoi init --apply git@github.com:Rokkit-exe/dotfiles.git
-```
-
 # Usage
 
 ```bash
-# Update dotfiles
+# Apply remote changes to local system
 chezmoi update
-# Add new dotfiles
+# Add new dotfiles to management
 chezmoi add <path/to/file>
-# Remove dotfiles
+# Remove dotfiles from management
 chezmoi forget <path/to/file>
 # View diff of dotfiles
 chezmoi diff
-# Apply changes to dotfiles
+# Apply local chezmoi changes to the system
 chezmoi apply
 ```

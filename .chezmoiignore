@@ -43,7 +43,7 @@
 # other
 *.bak*
 .config/*.bak*
-
+re-add.sh
 
 
 

@@ -67,14 +67,13 @@ alias public-ip='curl ipinfo.io/ip'
 alias local-eth="ip addr show eno1 | grep 'inet ' | cut -d' ' -f6"
 alias local-wifi="ip addr show wlan0 | grep 'inet ' | cut -d' ' -f6"
 alias ports='netstat -tulanp'
-alias server='rokkit-broswer-new-tab http://192.168.0.100'
-alias adguard='rokkit-broswer-new-tab http://192.168.0.100:30004'
 
 # alternatives
 alias cat='bat'
 alias grep='rg'
 alias ls='ls --color'
 alias tmux-init='/home/frank/.config/tmux/sessions/init.sh'
+alias cheat='/home/frank/coding/rokkit/bin/rokkit-cheatsheet'
 
 # Directories
 alias ..='cd ..'
