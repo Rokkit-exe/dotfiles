@@ -10,13 +10,20 @@ return {
 
       require("mason-lspconfig").setup({
         -- use lspconfig server names
-        ensure_installed = { "svelte", "html", "cssls", "ts_ls", "gopls", "lua_ls" },
+        ensure_installed = { "svelte", "html", "cssls", "ts_ls", "gopls", "lua_ls", "qmlls" },
         automatic_installation = true,
       })
 
       local lspconfig = require("lspconfig")
 
-      local servers = { "svelte", "html", "cssls", "ts_ls", "gopls", "lua_ls", "dartls" }
+      local servers = { "svelte", "html", "cssls", "ts_ls", "gopls", "lua_ls", "dartls", "qmlls" }
+
+      lspconfig.qmlls.setup({
+        cmd = { "/usr/lib/qt6/bin/qmlls" }, -- -E flag is important for older versions
+        filetypes = { "qml", "qmljs" },
+        root_dir = lspconfig.util.root_pattern(".qmlls.ini", ".git"),
+        settings = {},
+      })
 
       local function on_attach(_, bufnr)
         local nmap = function(keys, func, desc)

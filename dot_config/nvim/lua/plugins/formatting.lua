@@ -10,6 +10,7 @@ return {
         html = { "prettier" },
         css = { "prettier" },
         dart = { "dart_format" },
+        qml = { "prettier" },
       },
     },
   },
