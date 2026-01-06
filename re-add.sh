@@ -5,7 +5,7 @@
 chezmoi cd
 
 echo "re-adding all tracked files"
-chezmoi re-add "$(chezmoi list)"
+chezmoi add "$(chezmoi list)"
 
 git add .
 
