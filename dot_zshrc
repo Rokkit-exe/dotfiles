@@ -52,9 +52,6 @@ eval "$(starship init zsh)"
 # Disable vim mode, use emacs mode
 bindkey -e
 
-# aliases
-alias python='python3'
-alias pip='pip3'
 
 # Flutter
 alias emu1='flutter emulators --launch pixel_9_API_36'
@@ -80,8 +77,11 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+# ESP env
+alias esp-init='source /opt/esp-idf/export.sh'
 
-
+# X11 launch
+alias exec-x11="sudo -E QT_QPA_PLATFORM=wayland"
 
 # Golang
 if [[ ":PATH:" != *":/usr/local/go/bin:"* ]]; then

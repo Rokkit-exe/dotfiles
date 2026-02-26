@@ -10,19 +10,58 @@ return {
 
       require("mason-lspconfig").setup({
         -- use lspconfig server names
-        ensure_installed = { "svelte", "html", "cssls", "ts_ls", "gopls", "lua_ls", "qmlls" },
+        ensure_installed = {
+          "svelte",
+          "html",
+          "cssls",
+          "ts_ls",
+          "gopls",
+          "lua_ls",
+          "qmlls",
+          "clangd",
+          "pyright",
+          "ruff",
+        },
         automatic_installation = true,
       })
 
       local lspconfig = require("lspconfig")
 
-      local servers = { "svelte", "html", "cssls", "ts_ls", "gopls", "lua_ls", "dartls", "qmlls" }
+      local servers =
+        { "svelte", "html", "cssls", "ts_ls", "gopls", "lua_ls", "dartls", "qmlls", "clangd", "pyright", "ruff" }
 
       lspconfig.qmlls.setup({
         cmd = { "/usr/lib/qt6/bin/qmlls" }, -- -E flag is important for older versions
         filetypes = { "qml", "qmljs" },
         root_dir = lspconfig.util.root_pattern(".qmlls.ini", ".git"),
         settings = {},
+      })
+
+      lspconfig.clangd.setup({
+        cmd = { "clangd", "--background-index" },
+        filetypes = { "c", "cpp", "objc", "objcpp" },
+        root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+      })
+
+      lspconfig.pyright.setup({
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "basic",
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
+      })
+
+      -- Ruff (linting)
+      lspconfig.ruff.setup({
+        init_options = {
+          settings = {
+            args = {},
+          },
+        },
       })
 
       local function on_attach(_, bufnr)
