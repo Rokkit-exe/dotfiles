@@ -83,6 +83,9 @@ alias esp-init='source /opt/esp-idf/export.sh'
 # X11 launch
 alias exec-x11="sudo -E QT_QPA_PLATFORM=wayland"
 
+# chezmoi
+alias chezmoi-readd="chezmoi add $(chezmoi managed)"
+
 # Golang
 if [[ ":PATH:" != *":/usr/local/go/bin:"* ]]; then
   export PATH=$PATH:/usr/local/go/bin
