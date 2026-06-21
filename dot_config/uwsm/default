@@ -2,4 +2,4 @@
 
 export TERMINAL=xdg-terminal-exec
 export EDITOR=nvim
-export BROWSER=firefox
+export BROWSER=omarchy-launch-browser
